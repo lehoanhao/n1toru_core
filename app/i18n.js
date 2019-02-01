@@ -10,12 +10,15 @@
 const addLocaleData = require('react-intl').addLocaleData; //eslint-disable-line
 const enLocaleData = require('react-intl/locale-data/en');
 const jaLocaleData = require('react-intl/locale-data/ja');
+const viLocaleData = require('react-intl/locale-data/vi');
 
 const enTranslationMessages = require('./translations/en.json');
 const jaTranslationMessages = require('./translations/ja.json');
+const viTranslationMessages = require('./translations/vi.json');
 
 addLocaleData(enLocaleData);
 addLocaleData(jaLocaleData);
+addLocaleData(viLocaleData);
 
 const DEFAULT_LOCALE = 'en';
 
@@ -23,6 +26,7 @@ const DEFAULT_LOCALE = 'en';
 const appLocales = [
   'en',
   'ja',
+  'vi',
 ];
 
 const formatTranslationMessages = (locale, messages) => {
@@ -43,6 +47,7 @@ const formatTranslationMessages = (locale, messages) => {
 const translationMessages = {
   en: formatTranslationMessages('en', enTranslationMessages),
   ja: formatTranslationMessages('ja', jaTranslationMessages),
+  vi: formatTranslationMessages('vi', viTranslationMessages),
 };
 
 exports.appLocales = appLocales;

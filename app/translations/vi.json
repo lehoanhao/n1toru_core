@@ -1,0 +1,12 @@
+{
+  "app.containers.BlankPage.header": "Trang trống",
+  "app.containers.HomePage.header": "Trang chủ",
+  "app.containers.KanjiPage.header": "Trang hán tự",
+  "app.containers.NotFoundPage.header": "KHÔNG TÌM THẤY TRANG",
+  "footer.author.message": "Được phát triển bới {author}",
+  "language.en": "Tiếng Anh",
+  "language.ja": "Tiếng Nhật",
+  "language.vi": "Tiếng Việt",
+  "menu.blank": "Trang mẫu",
+  "menu.home": "Trang chủ"
+}

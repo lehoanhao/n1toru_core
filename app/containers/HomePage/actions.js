@@ -15,18 +15,26 @@
  *    }
  */
 
-import { CHANGE_USERNAME } from './constants';
+import {
+  LOAD_KANJIS,
+  LOAD_KANJIS_ERROR,
+  LOAD_KANJIS_SUCCESS,
+} from './constants';
 
-/**
- * Changes the input field of the form
- *
- * @param  {name} name The new text of the input field
- *
- * @return {object}    An action object with a type of CHANGE_USERNAME
- */
-export function changeUsername(name) {
+export function loadKanjis() {
   return {
-    type: CHANGE_USERNAME,
-    name,
+    type: LOAD_KANJIS,
+  };
+}
+export function kanjisLoaded(kanjis) {
+  return {
+    type: LOAD_KANJIS_SUCCESS,
+    data: kanjis,
+  };
+}
+export function kanjisLoadingError(error) {
+  return {
+    type: LOAD_KANJIS_ERROR,
+    error,
   };
 }

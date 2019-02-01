@@ -16,4 +16,8 @@ export default defineMessages({
     id: `${scope}.ja`,
     defaultMessage: 'ja',
   },
+  vi: {
+    id: `${scope}.vi`,
+    defaultMessage: 'vi',
+  },
 });

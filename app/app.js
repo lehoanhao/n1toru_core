@@ -79,6 +79,7 @@ if (!window.Intl) {
         import('intl/locale-data/jsonp/en.js'),
         import('intl/locale-data/jsonp/de.js'),
         import('intl/locale-data/jsonp/ja.js'),
+        import('intl/locale-data/jsonp/vi.js'),
       ]),
     ) // eslint-disable-line prettier/prettier
     .then(() => render(translationMessages))

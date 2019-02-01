@@ -2,27 +2,20 @@
  * Gets the repositories of the user from Github
  */
 
-import { call, put, select, takeLatest } from 'redux-saga/effects';
-import { LOAD_REPOS } from 'containers/App/constants';
-import { reposLoaded, repoLoadingError } from 'containers/App/actions';
+import { call, put, takeLatest } from 'redux-saga/effects';
+import { kanjisLoaded, kanjisLoadingError } from 'containers/HomePage/actions';
 
 import request from 'utils/request';
-import { makeSelectUsername } from 'containers/HomePage/selectors';
+import { LOAD_KANJIS } from './constants';
 
-/**
- * Github repos request/response handler
- */
-export function* getRepos() {
-  // Select username from store
-  const username = yield select(makeSelectUsername());
-  const requestURL = `https://mazii.net/api/jlptkanji/1/100/0`;
-
+export function* getKanjis() {
+  const requestURL = `http://mazii.net/api/jlptkanji/1qwq/100/0`;
   try {
     // Call our request helper (see 'utils/request')
-    const repos = yield call(request, requestURL);
-    yield put(reposLoaded(repos, username));
+    const kanjis = yield call(request, requestURL);
+    yield put(kanjisLoaded(kanjis));
   } catch (err) {
-    yield put(repoLoadingError(err));
+    yield put(kanjisLoadingError(err));
   }
 }
 
@@ -34,5 +27,5 @@ export default function* githubData() {
   // By using `takeLatest` only the result of the latest API call is applied.
   // It returns task descriptor (just like fork) so we can continue execution
   // It will be cancelled automatically on component unmount
-  yield takeLatest(LOAD_REPOS, getRepos);
+  yield takeLatest(LOAD_KANJIS, getKanjis);
 }

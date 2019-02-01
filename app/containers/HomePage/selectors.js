@@ -7,7 +7,11 @@ import { initialState } from './reducer';
 
 const selectHome = state => state.get('home', initialState);
 
-const makeSelectUsername = () =>
-  createSelector(selectHome, homeState => homeState.get('username'));
+const makeSelectKanjis = () =>
+  createSelector(selectHome, homeState => homeState.get('kanjis'));
+const makeSelectLoading = () =>
+  createSelector(selectHome, homeState => homeState.get('loading'));
 
-export { selectHome, makeSelectUsername };
+const makeSelectError = () =>
+  createSelector(selectHome, homeState => homeState.get('error'));
+export { selectHome, makeSelectKanjis, makeSelectLoading, makeSelectError };

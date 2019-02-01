@@ -11,19 +11,30 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import { IntlProvider } from 'react-intl';
-
+import { LocaleProvider } from 'antd';
+import vi from 'antd/lib/locale-provider/vi_VN';
+import en from 'antd/lib/locale-provider/en_US';
+import ja from 'antd/lib/locale-provider/ja_JP';
+import moment from 'moment';
 import { makeSelectLocale } from './selectors';
-
+const localeAnt = {
+  vi,
+  en,
+  ja,
+};
+moment.locale('en');
 export class LanguageProvider extends React.PureComponent {
   render() {
     return (
-      <IntlProvider
-        locale={this.props.locale}
-        key={this.props.locale}
-        messages={this.props.messages[this.props.locale]}
-      >
-        {React.Children.only(this.props.children)}
-      </IntlProvider>
+      <LocaleProvider locale={localeAnt[this.props.locale]}>
+        <IntlProvider
+          locale={this.props.locale}
+          key={this.props.locale}
+          messages={this.props.messages[this.props.locale]}
+        >
+          {React.Children.only(this.props.children)}
+        </IntlProvider>
+      </LocaleProvider>
     );
   }
 }

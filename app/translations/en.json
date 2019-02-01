@@ -1,10 +1,12 @@
 {
-  "menu.home": "Home",
-  "menu.blank": "Blank",
   "app.containers.BlankPage.header": "This is the BlankPage container!",
   "app.containers.HomePage.header": "This is the HomePage container!",
+  "app.containers.KanjiPage.header": "This is the KanjiPage container!",
   "app.containers.NotFoundPage.header": "Page not found.",
-  "language.ja": "Japanese",
+  "footer.author.message": "Made by {author}.",
   "language.en": "English",
-  "footer.author.message": "Made by {author}."
+  "language.ja": "Japanese",
+  "language.vi": "Vietnamese",
+  "menu.blank": "Blank",
+  "menu.home": "Home"
 }

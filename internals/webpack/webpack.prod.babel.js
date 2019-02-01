@@ -6,6 +6,7 @@ const OfflinePlugin = require('offline-plugin');
 const { HashedModuleIdsPlugin } = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = require('./webpack.base.babel')({
   mode: 'production',
@@ -112,7 +113,7 @@ module.exports = require('./webpack.base.babel')({
       // Removes warning for about `additional` section usage
       safeToUseOptionalCaches: true,
     }),
-
+    new CopyWebpackPlugin([{ from: 'app/assets/images', to: 'assets/images' }]),
     new CompressionPlugin({
       algorithm: 'gzip',
       test: /\.js$|\.css$|\.html$/,

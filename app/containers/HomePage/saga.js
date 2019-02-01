@@ -8,8 +8,8 @@ import { kanjisLoaded, kanjisLoadingError } from 'containers/HomePage/actions';
 import request from 'utils/request';
 import { LOAD_KANJIS } from './constants';
 
-export function* getKanjis() {
-  const requestURL = `http://mazii.net/api/jlptkanji/1qwq/100/0`;
+export function* getKanjis(action) {
+  const requestURL = `http://mazii.net/api/jlptkanji/1/100/${action.page}`;
   try {
     // Call our request helper (see 'utils/request')
     const kanjis = yield call(request, requestURL);
@@ -22,7 +22,7 @@ export function* getKanjis() {
 /**
  * Root saga manages watcher lifecycle
  */
-export default function* githubData() {
+export default function* watchKanjiData() {
   // Watches for LOAD_REPOS actions and calls getRepos when one comes in.
   // By using `takeLatest` only the result of the latest API call is applied.
   // It returns task descriptor (just like fork) so we can continue execution

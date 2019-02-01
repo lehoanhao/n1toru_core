@@ -9,33 +9,49 @@ import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import { compose } from 'redux';
+import { compose, bindActionCreators } from 'redux';
 import { createStructuredSelector } from 'reselect';
-import { Spin, List, Card, Skeleton } from 'antd';
+import { List, Card, Skeleton, Pagination } from 'antd';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import {
   makeSelectLoading,
   makeSelectError,
+  makeSelectKanjis,
 } from 'containers/HomePage/selectors';
 import messages from './messages';
 import { loadKanjis } from './actions';
-import { makeSelectKanjis } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import './style.css';
 /* eslint-disable react/prefer-stateless-function */
 export class HomePage extends React.PureComponent {
-  /**
-   * when initial state username is not null, submit the form to load repos
-   */
-  componentDidMount() {
-    this.props.onLoadKanjis();
+  constructor(props) {
+    super(props);
+    this.state = {
+      page: 1
+    }
   }
+  
+  componentDidMount() {
+    const { hash } = this.props.location;
+    const page = hash ? hash.replace('#', '') - 1 : 0;
+    this.setState({
+      page: page + 1,
+    });
+    this.props.onLoadKanjis(page);
+  }
+
+  handleChangePage = page => {
+    const { history } = this.props;
+    this.setState({
+      page,
+    })
+    history.push(`#${page}`);
+  };
 
   render() {
     const { loading, error, kanjis } = this.props;
-
     return (
       <article>
         <Helmet>
@@ -57,6 +73,7 @@ export class HomePage extends React.PureComponent {
               xxl: 3,
             }}
             dataSource={kanjis}
+            loading={loading}
             renderItem={item => (
               <List.Item>
                 <Card className="kanji-card">
@@ -65,11 +82,20 @@ export class HomePage extends React.PureComponent {
                       title={item.value.kanji}
                       description={item.description}
                     />
-                    Card content
+                    {item.value.mean}
                   </Skeleton>
                 </Card>
               </List.Item>
             )}
+            footer={
+              <Pagination
+                showQuickJumper
+                current={this.state.page}
+                total={12}
+                defaultPageSize={1}
+                onChange={this.handleChangePage}
+              />
+            }
           />
         </div>
       </article>
@@ -80,15 +106,16 @@ export class HomePage extends React.PureComponent {
 HomePage.propTypes = {
   loading: PropTypes.bool,
   error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  kanjis: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  onChangeUsername: PropTypes.func,
+  onLoadKanjis: PropTypes.func,
 };
 
-export function mapDispatchToProps(dispatch) {
-  return {
-    onLoadKanjis: () => dispatch(loadKanjis()),
-  };
-}
+export const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      onLoadKanjis: page => dispatch(loadKanjis(page)),
+    },
+    dispatch,
+  );
 
 const mapStateToProps = createStructuredSelector({
   kanjis: makeSelectKanjis(),

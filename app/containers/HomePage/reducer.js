@@ -30,7 +30,7 @@ function homeReducer(state = initialState, action) {
       return state
         .set('loading', true)
         .set('error', false)
-        .setIn('kanjis', false);
+        .set('kanjis', undefined);
     case LOAD_KANJIS_SUCCESS:
       return state.set('kanjis', action.data.results).set('loading', false);
     case LOAD_KANJIS_ERROR:

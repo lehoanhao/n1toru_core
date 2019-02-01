@@ -21,9 +21,10 @@ import {
   LOAD_KANJIS_SUCCESS,
 } from './constants';
 
-export function loadKanjis() {
+export function loadKanjis(page) {
   return {
     type: LOAD_KANJIS,
+    page,
   };
 }
 export function kanjisLoaded(kanjis) {

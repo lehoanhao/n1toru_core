@@ -11,7 +11,6 @@ const makeSelectKanjis = () =>
   createSelector(selectHome, homeState => homeState.get('kanjis'));
 const makeSelectLoading = () =>
   createSelector(selectHome, homeState => homeState.get('loading'));
-
 const makeSelectError = () =>
   createSelector(selectHome, homeState => homeState.get('error'));
 export { selectHome, makeSelectKanjis, makeSelectLoading, makeSelectError };

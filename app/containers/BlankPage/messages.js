@@ -5,11 +5,11 @@
  */
 import { defineMessages } from 'react-intl';
 
-export const scope = 'containers.BlankPage';
+export const scope = 'app.containers.BlankPage';
 
 export default defineMessages({
-  blank: {
-    id: `${scope}.blank`,
+  header: {
+    id: `${scope}.header`,
     defaultMessage: 'BLANK PAGE',
   },
 });

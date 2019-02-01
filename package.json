@@ -42,7 +42,8 @@
     "test": "cross-env NODE_ENV=test jest --coverage",
     "test:watch": "cross-env NODE_ENV=test jest --watchAll",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
-    "prettify": "prettier --write"
+    "prettify": "prettier --write",
+    "heroku-postbuild": "npm run build"
   },
   "lint-staged": {
     "*.js": [
@@ -116,6 +117,7 @@
     "circular-dependency-plugin": "5.0.2",
     "compare-versions": "3.4.0",
     "compression-webpack-plugin": "2.0.0",
+    "copy-webpack-plugin": "^4.6.0",
     "coveralls": "3.0.2",
     "css-loader": "1.0.0",
     "enzyme": "3.7.0",

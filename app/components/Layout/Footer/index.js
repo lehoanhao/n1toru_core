@@ -3,11 +3,10 @@ import { FormattedMessage } from 'react-intl';
 import LocaleToggle from 'containers/LocaleToggle';
 import { Layout } from 'antd';
 import messages from './messages';
-
 const { Footer } = Layout;
 function MyFooter() {
   return (
-    <Footer style={{textAlign: "center"}}>
+    <Footer style={{ textAlign: 'center' }}>
       <section>
         <LocaleToggle />
       </section>
@@ -15,12 +14,11 @@ function MyFooter() {
         <FormattedMessage
           {...messages.authorMessage}
           values={{
-            author: "HaoLH",
+            author: 'HaoLH',
           }}
         />
       </section>
     </Footer>
-
   );
 }
 

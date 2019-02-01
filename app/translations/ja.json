@@ -1,0 +1,10 @@
+{
+  "menu.home": "ホーム",
+  "menu.blank": "ブランク",
+  "app.containers.BlankPage.header": "これは BlankPage です!",
+  "app.containers.HomePage.header": "これは HomePage です!",
+  "app.containers.NotFoundPage.header": "ページが見つかりません。",
+  "language.ja": "日本語",
+  "language.en": "英語",
+  "footer.author.message": "{author}が作られた"
+}

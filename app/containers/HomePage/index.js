@@ -53,7 +53,7 @@ export class HomePage extends React.PureComponent {
           />
         </Helmet>
         <div>
-          HOME
+        <FormattedMessage {...messages.header} />
         </div>
       </article>
     );

@@ -1,34 +1,55 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Layout, Menu } from 'antd';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import messages from './messages';
+import './style.css';
+import logo from '!file-loader?name=[name].[ext]!../../../assets/images/logo.png';
 const { Header } = Layout;
-/* eslint-disable react/prefer-stateless-function */
+// eslint-disable-next-line react/prefer-stateless-function
 class MyHeader extends React.Component {
-  componentWillMount() {
-    
+  handleReturnHome() {
+    window.location.href = '/';
   }
 
   render() {
-    const {pathname} = this.props.location;
-    console.log(pathname)
+    const { pathname } = this.props.location;
     return (
-      <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
-        <div className="logo" />
+      <Header
+        style={{
+          position: 'fixed',
+          zIndex: 1,
+          width: '100%',
+          backgroundColor: 'white',
+          padding: '0 150px',
+        }}
+        theme="light"
+      >
+        <img
+          className="logo"
+          src={logo}
+          alt="logo"
+          onClick={() => {
+            this.handleReturnHome();
+          }}
+          onKeyPress={this.handleReturnHome}
+        />
         <Menu
-          theme="dark"
+          theme="light"
           mode="horizontal"
           defaultSelectedKeys={[pathname]}
           style={{ lineHeight: '64px' }}
         >
           <Menu.Item key="/">
-            <Link to="/">Home</Link>
+            <Link to="/">
+              <FormattedMessage {...messages.home} />
+            </Link>
           </Menu.Item>
           <Menu.Item key="/blank">
-            <Link to="/blank">Blank</Link>
-          </Menu.Item>
-          <Menu.Item key="/kanji">
-            <Link to="/kanji">Kanji</Link>
+            <Link to="/blank">
+              <FormattedMessage {...messages.blank} />
+            </Link>
           </Menu.Item>
         </Menu>
       </Header>

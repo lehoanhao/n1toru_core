@@ -15,7 +15,7 @@ export default class BlankPage extends React.Component {
           <title>Blank Page</title>
           <meta name="description" content="Blank page of React.js" />
         </Helmet>
-        <FormattedMessage {...messages.blank} />
+        <FormattedMessage {...messages.header} />
       </div>
     );
   }

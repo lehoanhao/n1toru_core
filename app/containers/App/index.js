@@ -19,7 +19,7 @@ const Header = withRouter(props => <MyHeader {...props} />);
 
 export default function App() {
   return (
-    <Layout>
+    <Layout theme="light">
       <Helmet
         titleTemplate="%s - HaoLH - React.js Boilerplate"
         defaultTitle="HaoLH - React.js Boilerplate"

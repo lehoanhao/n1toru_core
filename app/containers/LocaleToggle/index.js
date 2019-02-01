@@ -17,10 +17,14 @@ import { changeLocale } from '../LanguageProvider/actions';
 import { makeSelectLocale } from '../LanguageProvider/selectors';
 
 export class LocaleToggle extends React.PureComponent {
-  // eslint-disable-line react/prefer-stateless-function
   render() {
+    const langCurrent = localStorage.getItem('lang') || '';
+    const flagUrl = `assets/images/flags/${langCurrent}.png`;
     return (
       <Wrapper>
+        <span>
+          <img src={flagUrl} alt={langCurrent} width={25} />
+        </span>
         <Toggle
           value={this.props.locale}
           values={appLocales}

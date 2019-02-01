@@ -7,14 +7,15 @@
  */
 
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { Layout } from 'antd';
 import GlobalStyle from '../../global-styles';
 import MyHeader from '../../components/Layout/Header';
-import RouteHandler from './routes';
 import MyFooter from '../../components/Layout/Footer';
-
+import RouteHandler from './routes';
 const { Content } = Layout;
+const Header = withRouter(props => <MyHeader {...props} />);
 
 export default function App() {
   return (
@@ -25,7 +26,7 @@ export default function App() {
       >
         <meta name="description" content="A React.js Boilerplate application" />
       </Helmet>
-      <MyHeader />
+      <Header />
       <Content style={{ padding: '0 150px', marginTop: 64 }}>
         <div
           style={{

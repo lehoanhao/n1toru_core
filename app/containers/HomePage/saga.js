@@ -9,7 +9,7 @@ import request from 'utils/request';
 import { LOAD_KANJIS } from './constants';
 
 export function* getKanjis(action) {
-  const requestURL = `http://mazii.net/api/jlptkanji/1/100/${action.page}`;
+  const requestURL = `https://mazii.net/api/jlptkanji/1/100/${action.page}`;
   try {
     // Call our request helper (see 'utils/request')
     const kanjis = yield call(request, requestURL);

@@ -59,7 +59,7 @@ export class HomePage extends React.PureComponent {
         <div>
           <List
             grid={{
-              gutter: 10,
+              gutter: 15,
               xs: 2,
               sm: 2,
               md: 4,

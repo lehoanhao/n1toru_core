@@ -2,9 +2,9 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
-export const MyHelmet = props => {
-  const { id } = props;
 
+const MyHelmet = props => {
+  const { id } = props;
   return (
     <div>
       <FormattedMessage id={`menu.${id}`}>
@@ -31,3 +31,5 @@ export const MyHelmet = props => {
 MyHelmet.propTypes = {
   id: PropTypes.string,
 };
+
+export default MyHelmet;

@@ -18,7 +18,10 @@ import { makeSelectLocale } from '../LanguageProvider/selectors';
 
 export class LocaleToggle extends React.PureComponent {
   render() {
-    const langCurrent = localStorage.getItem('lang') || '';
+    let langCurrent = localStorage.getItem('lang') || '';
+    if (!langCurrent || langCurrent === '') {
+      langCurrent = 'en';
+    }
     const flagUrl = `assets/images/flags/${langCurrent}.png`;
     return (
       <Wrapper>

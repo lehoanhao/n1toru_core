@@ -24,8 +24,8 @@ import reducer from './reducer';
 import saga from './saga';
 import './style.css';
 import './styles.less';
-import MyHelmet from '../../components/Layout/Common/MyHelmet';
 import { getKanjiMeanSingle } from '../../utils/dataCommon';
+
 /* eslint-disable react/prefer-stateless-function */
 export class HomePage extends React.PureComponent {
   constructor(props) {
@@ -56,7 +56,6 @@ export class HomePage extends React.PureComponent {
     const { loading, kanjis } = this.props;
     return (
       <article>
-        <MyHelmet id="home" />
         <div>
           <List
             grid={{
@@ -103,7 +102,7 @@ HomePage.propTypes = {
   onLoadKanjis: PropTypes.func,
   location: PropTypes.object,
   history: PropTypes.object,
-  kanjis: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
+  kanjis: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
 };
 
 export const mapDispatchToProps = dispatch =>

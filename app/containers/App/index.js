@@ -27,7 +27,7 @@ export default function App() {
         <meta name="description" content="A React.js Boilerplate application" />
       </Helmet>
       <Header />
-      <Content style={{ padding: '0 150px', marginTop: 64 }}>
+      <Content style={{ padding: '0 2%', marginTop: 64 }}>
         <div
           style={{
             background: '#fff',

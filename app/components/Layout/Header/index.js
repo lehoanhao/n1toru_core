@@ -22,7 +22,7 @@ class MyHeader extends React.Component {
           zIndex: 1,
           width: '100%',
           backgroundColor: 'white',
-          padding: '0 150px',
+          padding: '0 2%',
         }}
         theme="light"
       >

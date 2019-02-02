@@ -6,8 +6,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Helmet } from 'react-helmet';
-import { FormattedMessage } from 'react-intl';
+// import { FormattedMessage, formatMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { compose, bindActionCreators } from 'redux';
 import { createStructuredSelector } from 'reselect';
@@ -19,20 +18,23 @@ import {
   makeSelectError,
   makeSelectKanjis,
 } from 'containers/HomePage/selectors';
-import messages from './messages';
+// import messages from './messages';
 import { loadKanjis } from './actions';
 import reducer from './reducer';
 import saga from './saga';
 import './style.css';
+import './styles.less';
+import MyHelmet from '../../components/Layout/Common/MyHelmet';
+import { getKanjiMeanSingle } from '../../utils/dataCommon';
 /* eslint-disable react/prefer-stateless-function */
 export class HomePage extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      page: 1
-    }
+      page: 1,
+    };
   }
-  
+
   componentDidMount() {
     const { hash } = this.props.location;
     const page = hash ? hash.replace('#', '') - 1 : 0;
@@ -46,43 +48,36 @@ export class HomePage extends React.PureComponent {
     const { history } = this.props;
     this.setState({
       page,
-    })
+    });
     history.push(`#${page}`);
   };
 
   render() {
-    const { loading, error, kanjis } = this.props;
+    const { loading, kanjis } = this.props;
     return (
       <article>
-        <Helmet>
-          <title>Home Page</title>
-          <meta
-            name="description"
-            content="A React.js Boilerplate application homepage"
-          />
-        </Helmet>
+        <MyHelmet id="home" />
         <div>
           <List
             grid={{
-              gutter: 16,
-              xs: 1,
+              gutter: 10,
+              xs: 2,
               sm: 2,
               md: 4,
               lg: 4,
-              xl: 6,
-              xxl: 3,
+              xl: 5,
+              xxl: 8,
             }}
             dataSource={kanjis}
             loading={loading}
             renderItem={item => (
               <List.Item>
-                <Card className="kanji-card">
+                <Card className="kanji-card" hoverable="true" bordered>
                   <Skeleton loading={loading} active>
                     <List.Item.Meta
                       title={item.value.kanji}
-                      description={item.description}
+                      description={getKanjiMeanSingle(item.value.mean)}
                     />
-                    {item.value.mean}
                   </Skeleton>
                 </Card>
               </List.Item>
@@ -105,8 +100,10 @@ export class HomePage extends React.PureComponent {
 
 HomePage.propTypes = {
   loading: PropTypes.bool,
-  error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   onLoadKanjis: PropTypes.func,
+  location: PropTypes.object,
+  history: PropTypes.object,
+  kanjis: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
 };
 
 export const mapDispatchToProps = dispatch =>

@@ -2,7 +2,7 @@
  * Gets the repositories of the user from Github
  */
 
-import { call, put } from 'redux-saga/effects';
+import { call, put, all } from 'redux-saga/effects';
 import {
   kanjisLoaded,
   kanjisLoadingError,
@@ -14,7 +14,7 @@ import request from 'utils/request';
 import { takeLatest } from 'redux-saga';
 import { LOAD_KANJIS, LOAD_KANJI_DETAIL } from './constants';
 
-export function* getKanjis(action) {
+function* getKanjis(action) {
   const requestURL = `https://mazii.net/api/jlptkanji/1/100/${action.page}`;
   try {
     // Call our request helper (see 'utils/request')
@@ -25,7 +25,11 @@ export function* getKanjis(action) {
   }
 }
 
-export function* getKanjiDetail(action) {
+export function* watchKanjisData() {
+  yield takeLatest(LOAD_KANJIS, getKanjis);
+}
+
+function* getKanjiDetail(action) {
   const requestURL = `https://mazii.net/api/mazii/${action.kanji}/10`;
   try {
     // Call our request helper (see 'utils/request')
@@ -36,10 +40,10 @@ export function* getKanjiDetail(action) {
   }
 }
 
-/**
- * Root saga manages watcher lifecycle
- */
-export default function* watchAll() {
-  yield takeLatest(LOAD_KANJIS, getKanjis);
+export function* watchKanjiDetailData() {
   yield takeLatest(LOAD_KANJI_DETAIL, getKanjiDetail);
+}
+
+export default function* watchAll() {
+  yield all([watchKanjisData(), watchKanjiDetailData()]);
 }

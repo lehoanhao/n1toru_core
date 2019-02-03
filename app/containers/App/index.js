@@ -20,11 +20,8 @@ const Header = withRouter(props => <MyHeader {...props} />);
 export default function App() {
   return (
     <Layout theme="light">
-      <Helmet
-        titleTemplate="%s - HaoLH - React.js Boilerplate"
-        defaultTitle="HaoLH - React.js Boilerplate"
-      >
-        <meta name="description" content="A React.js Boilerplate application" />
+      <Helmet titleTemplate="%s - N1toru" defaultTitle="N1toru">
+        <meta name="description" content="N1toru application" />
       </Helmet>
       <Header />
       <Content style={{ padding: '0 2%', marginTop: 64 }}>

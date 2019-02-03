@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
-import { List, Card, Skeleton, Pagination, Modal, Spin } from 'antd';
+import { List, Card, Skeleton, Pagination, Modal, Spin, Row, Col } from 'antd';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import {
@@ -29,6 +29,8 @@ import './styles.less';
 import {
   getKanjiMeanSingle,
   mergeKanjiCompDetail,
+  splitKanjiDetail,
+  splitKanjiKunOn,
 } from '../../utils/dataCommon';
 import MyHelmet from '../../components/Layout/Common/MyHelmet';
 
@@ -69,10 +71,6 @@ export class HomePage extends React.PureComponent {
 
   handleChangePage = page => {
     const { history } = this.props;
-    this.setState({
-      page,
-    });
-    this.props.onLoadKanjis(page);
     history.replace(`#${page}`);
   };
 
@@ -91,13 +89,31 @@ export class HomePage extends React.PureComponent {
       >
         {kanjiDetail ? (
           <div className="kanji-detail-body">
-            <div>訓: {kanjiDetail.kun}</div>
-            <div>音: {kanjiDetail.on}</div>
-            <div>Số nét: {kanjiDetail.stroke_count}</div>
+            <Row>
+              <Col span={18}>
+                <div>
+                  <span className="kanji-detail-title">訓:</span>{' '}
+                  {splitKanjiKunOn(kanjiDetail.kun)}
+                </div>
+                <div>
+                  <span className="kanji-detail-title">音:</span>{' '}
+                  {splitKanjiKunOn(kanjiDetail.on)}
+                </div>
+                <div>
+                  <span className="kanji-detail-title">Số nét:</span>{' '}
+                  {kanjiDetail.stroke_count}
+                </div>
+                <div>
+                  <span className="kanji-detail-title">Bộ thành phần:</span>
+                  {mergeKanjiCompDetail(kanjiDetail.compDetail)}
+                </div>
+              </Col>
+              <Col span={6}>aaa</Col>
+            </Row>
             <div>
-              Bộ thành phần: {mergeKanjiCompDetail(kanjiDetail.compDetail)}
+              <span className="kanji-detail-title">Nghĩa:</span>{' '}
+              {splitKanjiDetail(kanjiDetail.detail)}
             </div>
-            <div>Nghĩa: {kanjiDetail.detail}</div>
           </div>
         ) : (
           <Spin />

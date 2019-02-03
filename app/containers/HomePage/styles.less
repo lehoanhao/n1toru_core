@@ -1,16 +1,37 @@
 @primary-color: #1890ff;
 .kanji-card {
     border: 0.5px solid rgb(165, 158, 158);
-    min-height: 70px;
 }
 .kanji-card .ant-card-body {
-    padding: 10px 12px;
+    padding: 10px 10px;
     .ant-list-item-meta-title{
       font-size: 2rem;
+      color: #1F79FF;
+      text-align: center;
+    }
+    .ant-list-item-meta-description{
+      color: black;
+      text-align: center;
+      font-size: 12px;
     }
   }
   
   .kanji-card:hover{
-    transform: scale(1.1);
+    transform: scale(1.2);
     border: 0.5px solid @primary-color;
+    transition: 0.5s;
+    transform-style: preserve-3d;
+  }
+  .kanji-detail-modal{
+    color: black;
+    .ant-modal-title{
+      font-size: 25px;
+      font-weight: 300;
+    }
+    .comp-detail-item{
+      padding-right: 10px;
+    }
+    .kanji-detail-body div{
+      padding-bottom: 5px;
+    }
   }

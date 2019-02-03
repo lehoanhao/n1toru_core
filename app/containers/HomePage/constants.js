@@ -8,8 +8,11 @@
  * Follow this format:
  * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
  */
-
-export const CHANGE_USERNAME = 'n1toru/Home/CHANGE_USERNAME';
 export const LOAD_KANJIS = 'n1toru/Home/LOAD_KANJIS';
-export const LOAD_KANJIS_SUCCESS = 'n1toru/App/LOAD_KANJIS_SUCCESS';
-export const LOAD_KANJIS_ERROR = 'n1toru/App/LOAD_KANJIS_ERROR';
+export const LOAD_KANJIS_SUCCESS = 'n1toru/Home/LOAD_KANJIS_SUCCESS';
+export const LOAD_KANJIS_ERROR = 'n1toru/Home/LOAD_KANJIS_ERROR';
+
+export const LOAD_KANJI_DETAIL = 'n1toru/Home/LOAD_KANJI_DETAIL';
+export const LOAD_KANJI_DETAIL_SUCCESS =
+  'n1toru/Home/LOAD_KANJI_DETAIL_SUCCESS';
+export const LOAD_KANJI_DETAIL_ERROR = 'n1toru/Home/LOAD_KANJI_DETAIL_ERROR';

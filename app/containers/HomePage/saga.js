@@ -2,11 +2,17 @@
  * Gets the repositories of the user from Github
  */
 
-import { call, put, takeLatest } from 'redux-saga/effects';
-import { kanjisLoaded, kanjisLoadingError } from 'containers/HomePage/actions';
+import { call, put } from 'redux-saga/effects';
+import {
+  kanjisLoaded,
+  kanjisLoadingError,
+  kanjiDetailLoaded,
+  kanjiDetailLoadingError,
+} from 'containers/HomePage/actions';
 
 import request from 'utils/request';
-import { LOAD_KANJIS } from './constants';
+import { takeLatest } from 'redux-saga';
+import { LOAD_KANJIS, LOAD_KANJI_DETAIL } from './constants';
 
 export function* getKanjis(action) {
   const requestURL = `https://mazii.net/api/jlptkanji/1/100/${action.page}`;
@@ -19,13 +25,21 @@ export function* getKanjis(action) {
   }
 }
 
+export function* getKanjiDetail(action) {
+  const requestURL = `https://mazii.net/api/mazii/${action.kanji}/10`;
+  try {
+    // Call our request helper (see 'utils/request')
+    const kanjiDetail = yield call(request, requestURL);
+    yield put(kanjiDetailLoaded(kanjiDetail));
+  } catch (err) {
+    yield put(kanjiDetailLoadingError(err));
+  }
+}
+
 /**
  * Root saga manages watcher lifecycle
  */
-export default function* watchKanjiData() {
-  // Watches for LOAD_REPOS actions and calls getRepos when one comes in.
-  // By using `takeLatest` only the result of the latest API call is applied.
-  // It returns task descriptor (just like fork) so we can continue execution
-  // It will be cancelled automatically on component unmount
+export default function* watchAll() {
   yield takeLatest(LOAD_KANJIS, getKanjis);
+  yield takeLatest(LOAD_KANJI_DETAIL, getKanjiDetail);
 }

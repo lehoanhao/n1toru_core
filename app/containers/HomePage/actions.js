@@ -19,6 +19,9 @@ import {
   LOAD_KANJIS,
   LOAD_KANJIS_ERROR,
   LOAD_KANJIS_SUCCESS,
+  LOAD_KANJI_DETAIL,
+  LOAD_KANJI_DETAIL_ERROR,
+  LOAD_KANJI_DETAIL_SUCCESS,
 } from './constants';
 
 export function loadKanjis(page) {
@@ -36,6 +39,25 @@ export function kanjisLoaded(kanjis) {
 export function kanjisLoadingError(error) {
   return {
     type: LOAD_KANJIS_ERROR,
+    error,
+  };
+}
+
+export function loadKanjiDetail(kanji) {
+  return {
+    type: LOAD_KANJI_DETAIL,
+    kanji,
+  };
+}
+export function kanjiDetailLoaded(kanjiDetail) {
+  return {
+    type: LOAD_KANJI_DETAIL_SUCCESS,
+    data: kanjiDetail,
+  };
+}
+export function kanjiDetailLoadingError(error) {
+  return {
+    type: LOAD_KANJI_DETAIL_ERROR,
     error,
   };
 }

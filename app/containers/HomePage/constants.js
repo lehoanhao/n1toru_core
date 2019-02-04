@@ -16,3 +16,7 @@ export const LOAD_KANJI_DETAIL = 'n1toru/Home/LOAD_KANJI_DETAIL';
 export const LOAD_KANJI_DETAIL_SUCCESS =
   'n1toru/Home/LOAD_KANJI_DETAIL_SUCCESS';
 export const LOAD_KANJI_DETAIL_ERROR = 'n1toru/Home/LOAD_KANJI_DETAIL_ERROR';
+
+export const LOAD_KANJI_DRAW = 'n1toru/Home/LOAD_KANJI_DRAW';
+export const LOAD_KANJI_DRAW_SUCCESS = 'n1toru/Home/LOAD_KANJI_DRAW_SUCCESS';
+export const LOAD_KANJI_DRAW_ERROR = 'n1toru/Home/LOAD_KANJI_DRAW_ERROR';

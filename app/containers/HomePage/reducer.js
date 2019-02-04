@@ -18,6 +18,9 @@ import {
   LOAD_KANJI_DETAIL,
   LOAD_KANJI_DETAIL_SUCCESS,
   LOAD_KANJI_DETAIL_ERROR,
+  LOAD_KANJI_DRAW,
+  LOAD_KANJI_DRAW_SUCCESS,
+  LOAD_KANJI_DRAW_ERROR,
 } from './constants';
 
 // The initial state of the App
@@ -26,6 +29,7 @@ export const initialState = fromJS({
   error: false,
   kanjis: [],
   kanjiDetail: {},
+  kanjiDraw: null,
   loadingDetail: false,
 });
 
@@ -48,6 +52,13 @@ function homeReducer(state = initialState, action) {
         .set('loadingDetail', false);
     case LOAD_KANJI_DETAIL_ERROR:
       return state.set('error', action.error).set('loadingDetail', false);
+    case LOAD_KANJI_DRAW:
+      return state.set('kanjiDraw', undefined);
+    case LOAD_KANJI_DRAW_SUCCESS:
+      console.log(action.data.text());
+      return state.set('kanjiDraw', action.data);
+    case LOAD_KANJI_DRAW_ERROR:
+      return state.set('error', action.error);
     default:
       return state;
   }

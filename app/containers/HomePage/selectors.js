@@ -17,6 +17,8 @@ const makeSelectError = () =>
   createSelector(selectHome, homeState => homeState.get('error'));
 const makeSelectKanjiDetail = () =>
   createSelector(selectHome, homeState => homeState.get('kanjiDetail'));
+const makeSelectKanjiDraw = () =>
+  createSelector(selectHome, homeState => homeState.get('kanjiDraw'));
 export {
   selectHome,
   makeSelectKanjis,
@@ -24,4 +26,5 @@ export {
   makeSelectError,
   makeSelectKanjiDetail,
   makeSelectLoadingDetail,
+  makeSelectKanjiDraw,
 };

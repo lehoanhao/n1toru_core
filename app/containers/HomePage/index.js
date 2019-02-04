@@ -19,9 +19,10 @@ import {
   makeSelectError,
   makeSelectKanjis,
   makeSelectKanjiDetail,
+  makeSelectKanjiDraw,
 } from 'containers/HomePage/selectors';
 // import messages from './messages';
-import { loadKanjis, loadKanjiDetail } from './actions';
+import { loadKanjis, loadKanjiDetail, loadKanjiDraw } from './actions';
 import reducer from './reducer';
 import saga from './saga';
 import './style.css';
@@ -55,6 +56,10 @@ export class HomePage extends React.PureComponent {
       visible: true,
     });
     this.props.onLoadKanjiDetail(kanji);
+    this.props.onLoadKanjiDraw(kanji);
+    fetch('https://data.mazii.net/kanji/05225.svg')
+      .then(response => response.text())
+      .then(svg => document.body.insertAdjacentHTML('afterbegin', svg));
   };
 
   handleOk = () => {
@@ -108,7 +113,7 @@ export class HomePage extends React.PureComponent {
                   {mergeKanjiCompDetail(kanjiDetail.compDetail)}
                 </div>
               </Col>
-              <Col span={6}>aaa</Col>
+              <Col span={6}>{this.props.kanjiDraw}</Col>
             </Row>
             <div>
               <span className="kanji-detail-title">Nghĩa:</span>{' '}
@@ -173,20 +178,24 @@ HomePage.propTypes = {
   loading: PropTypes.bool,
   onLoadKanjis: PropTypes.func,
   onLoadKanjiDetail: PropTypes.func,
+  onLoadKanjiDraw: PropTypes.func,
   location: PropTypes.object,
   history: PropTypes.object,
   kanjis: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   kanjiDetail: PropTypes.object,
+  kanjiDraw: PropTypes.element,
 };
 
 export const mapDispatchToProps = dispatch => ({
   onLoadKanjis: page => dispatch(loadKanjis(page)),
   onLoadKanjiDetail: kanji => dispatch(loadKanjiDetail(kanji)),
+  onLoadKanjiDraw: kanji => dispatch(loadKanjiDraw(kanji)),
 });
 
 const mapStateToProps = createStructuredSelector({
   kanjis: makeSelectKanjis(),
   kanjiDetail: makeSelectKanjiDetail(),
+  kanjiDraw: makeSelectKanjiDraw(),
   loading: makeSelectLoading(),
   loadingDetail: makeSelectLoadingDetail(),
   error: makeSelectError(),
